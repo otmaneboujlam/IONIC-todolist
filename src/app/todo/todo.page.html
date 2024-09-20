@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/todos"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Todo n°: {{todo.id}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{todo.title}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-item>
+    <ion-label position="stacked">Title</ion-label>
+    <ion-input [(ngModel)]="editedTodo.title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Body</ion-label>
+    <ion-input [(ngModel)]="editedTodo.body"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-select [(ngModel)]="editedTodo.priority" label="Priority" placeholder="Select Priority">
+      <ion-select-option value="low">Low</ion-select-option>
+      <ion-select-option value="medium">Medium</ion-select-option>
+      <ion-select-option value="high">High</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-button (click)="save()"> Save </ion-button>
+    <ion-button (click)="cancel()"> Cancel </ion-button>
+  </ion-item>
+</ion-content>

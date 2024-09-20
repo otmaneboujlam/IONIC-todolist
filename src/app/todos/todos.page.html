@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Todo list</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Todo list</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    @for (todo of todos; track $index) {
+    <ion-item-sliding>
+      <ion-item>
+        <ion-label>{{todo.id}}. {{todo.title}}</ion-label>
+        @if (todo.status === "InProgress")
+        {<ion-icon slot="end" name="construct-outline"></ion-icon>}
+        @if (todo.status === "Waiting")
+        {<ion-icon slot="end" name="eye"></ion-icon>}
+        @if (todo.status === "Finished")
+        {<ion-icon slot="end" name="checkmark-done-outline"></ion-icon>}
+        <ion-buttons slot="end">
+          <ion-button (click)="presentActionSheet(todo)">
+            <ion-icon slot="icon-only" name="ellipsis-horizontal-outline"></ion-icon>
+          </ion-button>
+          <ion-button (click)="showInfo(todo)">
+            <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="presentDeleteAlert(todo)" color="danger">Delete</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+    }
+  </ion-list>
+</ion-content>
